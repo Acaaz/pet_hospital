@@ -1,0 +1,35 @@
+.custom-container {
+    width: 60%; /* Set container width to 60% of screen */
+    margin: 0 auto; /* Center container horizontally */
+    padding: 20px; /* Padding inside container */
+    border: 1px solid #ccc; /* Border style */
+    border-radius: 8px; /* Rounded corners */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-label {
+    font-weight: bold;
+}
+
+.form-group {
+    margin-bottom: 15px; /* Adjust margin between form groups */
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure form group takes full width */
+}
+
+.form-label {
+    min-width: 120px; /* Adjust as needed based on label length */
+    margin-right: 20px; /* Spacing between label and input */
+    text-align: right; /* Align label text to right */
+}
+
+.form-control, .form-group textarea {
+    flex-grow: 1; /* Make input fields take the remaining width */
+}
+
+.btn-primary {
+    align-self: center; /* Center the button */
+}
