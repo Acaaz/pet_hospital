@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--              数据库连接配置块            -->
+    <!--引入数据库配置-->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!--创建DataSource 为了创建SqlSession-->
+    <bean name="dataSource"
+          class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="driverClass" value="${jdbc.myDriver}"/>
+        <property name="jdbcUrl" value="${jdbc.myUrl}"/>
+        <property name="user" value="${jdbc.myUsername}"/>
+        <property name="password" value="${jdbc.myPassword}"/>
+    </bean>
+    <!--配置SqlSession，
+    此Bean创建完成后，就可以通过Spring来对数据库进行操作-->
+    <bean id="sessionFactory"
+          class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+
+    <!--            Mapper对象配置块            -->
+    <!--将Mapper类加入Spring容器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mapper"/>
+    </bean>
+
+    <!--            Service对象配置块            -->
+    <!--将业务类加入Spring容器-->
+    <context:component-scan base-package="com.service"/>
+
+
+</beans>
